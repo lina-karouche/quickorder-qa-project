@@ -5,14 +5,13 @@
 Ce fork contient l'audit QA de QuickOrder réalisé dans le cadre du cours **Tests et qualité des solutions numériques**.
 
 **Livrables** (dossier `docs/`) :
-- [`01-strategie-test.md`](docs/01-strategie-test.md) — périmètre, risques, types de tests
-- [`02-cas-de-test.md`](docs/02-cas-de-test.md) — 24 cas de test (nominaux, limites, erreurs, règles métier)
-- [`03-campagne-execution.md`](docs/03-campagne-execution.md) — suivi des preuves d'exécution
-- [`04-bug-reports.md`](docs/04-bug-reports.md) — 10 anomalies documentées
-- [`05-rapport-analyse.md`](docs/05-rapport-analyse.md) — statistiques et recommandation Go/No-Go
-- [`06-plan-amelioration.md`](docs/06-plan-amelioration.md) — 12 améliorations priorisées
-
-> Partie "tests utilisateurs" (brief, section 6) non traitée dans cette itération.
+- [`test-strategy.md`](docs/test-strategy.md) — périmètre, types de tests, environnement
+- [`risk-matrix.md`](docs/risk-matrix.md) — analyse de risques, priorisation
+- [`test-cases.xlsx`](docs/test-cases.xlsx) — 24 cas de test (nominaux, limites, erreurs, règles métier)
+- [`execution-report.md`](docs/execution-report.md) — preuves d'exécution, statistiques et recommandation Go/No-Go
+- [`bug-reports/`](docs/bug-reports/) — 10 anomalies documentées
+- [`user-feedback.md`](docs/user-feedback.md) — tests utilisateurs (hors périmètre de cette itération, justification incluse)
+- [`improvement-plan.md`](docs/improvement-plan.md) — 12 améliorations priorisées
 
 ---
 

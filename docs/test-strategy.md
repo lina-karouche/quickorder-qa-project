@@ -16,7 +16,7 @@ QuickOrder est une plateforme de commande de repas (web + API REST) qui doit êt
 - Règles métier : panier mono-restaurant, coupons (montant minimum, plafond, expiration), paiement (carte/PayPal/cash), gestion du stock, statuts de commande, droits admin.
 
 ### Exclu (hors périmètre de cet audit)
-- Tests utilisateurs / recueil de feedback (partie 6 du brief — non traitée dans cette itération).
+- Tests utilisateurs / recueil de feedback (partie 6 du brief — voir `user-feedback.md` pour la justification).
 - Modification du code source (contrainte explicite du brief : audit en boîte noire/grise sans corriger l'app).
 - Tests de charge/performance et tests de sécurité approfondis (hors scope temps imparti) — seuls des contrôles de base (IDOR, clé API) sont inclus.
 
@@ -31,29 +31,16 @@ QuickOrder est une plateforme de commande de repas (web + API REST) qui doit êt
 | API | Vérifier les contrats d'API (codes HTTP, payloads, authentification par clé) |
 | Sécurité de base | Contrôle d'accès horizontal (IDOR sur commandes d'autrui), autorisation API |
 
-## 4. Analyse de risques — matrice priorité / impact
+L'analyse de risques détaillée et la priorisation sont consignées séparément dans `risk-matrix.md`.
 
-| Risque | Zone | Probabilité | Impact | Priorité |
-|---|---|---|---|---|
-| Survente (commande possible malgré stock insuffisant) | Panier / Checkout / API orders | Élevée | Élevé | **Critique** |
-| Paiement cash accepté sans montant suffisant | Checkout / API orders | Élevée | Élevé | **Critique** |
-| Commande dupliquée via PayPal (double débit potentiel) | Checkout / API orders | Élevée | Élevé | **Critique** |
-| Restaurant fermé acceptant quand même des commandes | Panier / Checkout | Moyenne | Élevé | Haute |
-| Minimum de commande affiché mais non appliqué | Checkout | Élevée | Moyen | Haute |
-| Incohérence coupon annoncé vs appliqué (ATLAS15) | Coupons | Élevée | Moyen | Haute |
-| Filtre de livraison inversé (résultats contraires à la demande) | Recherche / Accueil | Élevée | Moyen | Moyenne |
-| Transitions de statut de commande incohérentes (admin) | Back-office | Moyenne | Moyen | Moyenne |
-| Avis possible sans avoir commandé | Fiche restaurant | Faible | Faible | Basse |
-| API expose des données non censées être publiques (restaurants fermés) | API | Moyenne | Faible | Basse |
-
-## 5. Environnement de test
+## 4. Environnement de test
 
 - App : `http://127.0.0.1:5000` (Flask dev server, SQLite locale, base réinitialisée via `seed.py`)
 - Swagger : `http://127.0.0.1:5000/docs/` — clé API `X-API-Key: quickorder-demo-key`
 - Comptes : `alice@example.com` / `Password123!` (client), `bob@example.com` / `Password123!` (client), `admin@quickorder.local` / `Admin123!` (admin)
 - Outils : navigateur (tests UI), Swagger UI / curl / Postman (tests API)
 
-## 6. Critères d'entrée / sortie
+## 5. Critères d'entrée / sortie
 
 **Entrée** : application démarrée, base de données seedée, comptes de démonstration disponibles.
 
@@ -62,12 +49,12 @@ QuickOrder est une plateforme de commande de repas (web + API REST) qui doit êt
 - Tous les bugs trouvés documentés avec preuve
 - Rapport d'analyse et recommandation Go/No-Go produits
 
-## 7. Livrables
+## 6. Livrables
 
-1. Stratégie de test (ce document)
-2. Cas de test (`02-cas-de-test.md`)
-3. Preuves d'exécution (`03-campagne-execution.md`)
-4. Bug reports (`04-bug-reports.md`)
-5. Rapport d'analyse (`05-rapport-analyse.md`)
-6. ~~Tests utilisateurs~~ — hors scope de cette itération
-7. Plan d'amélioration (`06-plan-amelioration.md`)
+1. Stratégie de test (ce document) — `test-strategy.md`
+2. Matrice de risques — `risk-matrix.md`
+3. Cas de test — `test-cases.xlsx`
+4. Rapport d'exécution (preuves + statistiques + Go/No-Go) — `execution-report.md`
+5. Bug reports — `bug-reports/`
+6. Tests utilisateurs — `user-feedback.md`
+7. Plan d'amélioration — `improvement-plan.md`
